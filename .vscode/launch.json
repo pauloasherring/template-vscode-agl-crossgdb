@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "GDB debug",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${config:targetInFolder}/${config:targetAppName}",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "serverLaunchTimeout": 20000,
+            "logging": {
+                "engineLogging": true,
+                "trace": true,
+                "traceResponse": true,
+                "programOutput": true
+
+            },
+            "MIMode": "gdb",
+            "targetArchitecture": "arm64",
+            "preLaunchTask": "Deploy and Start remote gdbserver (new window)",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "miDebuggerPath": "${env:OECORE_NATIVE_SYSROOT}/usr/bin/aarch64-agl-linux/${env:GDB}",
+            "miDebuggerServerAddress": "${config:targetIP}:3000",
+        }
+    ]
+}
